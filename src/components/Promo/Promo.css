@@ -31,16 +31,6 @@
   height: 74px;
 }
 
-.promo__logo {
-  position: relative;
-  background-image: url(../../images/logo.svg);
-  background-size: 38px 38px;
-  width: 38px;
-  height: 38px;
-  margin: 0;
-  padding: 0;
-}
-
 .promo__block-auth {
   display: flex;
   justify-content: center;

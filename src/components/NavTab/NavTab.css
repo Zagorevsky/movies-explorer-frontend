@@ -28,6 +28,11 @@
   color: rgba(0, 0, 0, 1);
 }
 
+.nav-tab__link:hover {
+  opacity: 0.6;
+  cursor: pointer;
+}
+
 @media screen and (max-width: 720px){
   .nav-tab__menu {
     gap: 24px;
