@@ -18,9 +18,9 @@ function Login() {
           </div>
           <div className="login__block-input">
             <p className="login__input-title">Пароль</p>
-            <input className="login__input login__input" required id="password" name="password"
+            <input className="login__input" required id="password" name="password"
               placeholder="" type="password" />
-            <span id="password-error" className="login__error"></span>
+            <span id="password-error" className="login__error "></span>
           </div>
           <div className="login__button-container">
             <button type="submit" className="login__button">Войти</button>
@@ -28,7 +28,7 @@ function Login() {
         </form>
         <div className="login__menu">
           <p className="login__menu-txt">Ещё не зарегистрированы?</p>
-          <Link to="/sign-in" className="login__menu-link">Регистрация</Link>
+          <Link to="/signup" className="login__menu-link">Регистрация</Link>
         </div>
       </div>
     </div>

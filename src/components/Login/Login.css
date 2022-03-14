@@ -58,6 +58,10 @@
   color: rgba(0, 0, 0, 1);
 }
 
+.login__input_aktiv {
+  border-bottom: 1px solid rgba(52, 86, 243, 1);
+}
+
 .login__error {
   color: rgba(238, 52, 101, 1);
   font-size: 10px;
@@ -67,6 +71,10 @@
   display: none;
   position: absolute;
   top: 51px;
+}
+
+.login__error_aktiv {
+  display: block;
 }
 
 .login__button {
