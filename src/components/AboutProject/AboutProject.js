@@ -18,12 +18,12 @@ function AboutProject() {
               которые нужно было соблюдать, чтобы успешно защититься.</p>
           </li>
         </ul>
-        <div className="about-project__tab">
-          <div className="about-project__tab-back">1 неделя</div>
-          <div className="about-project__tab-front">4 недели</div>
-          <div className="about-project__tab-txt">Back-end</div>
-          <div className="about-project__tab-txt">Front-end</div>
-        </div>
+        <ul className="about-project__tab">
+          <li className="about-project__tab-back">1 неделя</li>
+          <li className="about-project__tab-front">4 недели</li>
+          <li className="about-project__tab-txt">Back-end</li>
+          <li className="about-project__tab-txt">Front-end</li>
+        </ul>
       </div>
     </div>
   );
