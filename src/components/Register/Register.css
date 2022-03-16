@@ -78,7 +78,7 @@
 }
 
 .register__error_aktiv {
-  display: block;
+  display: none;
 }
 
 .register__button {

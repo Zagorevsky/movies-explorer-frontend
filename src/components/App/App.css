@@ -1,13 +1,10 @@
 .page {
   margin: 0;
   padding: 0;
-  font-family: 'Inter', Arial, sans-serif;
-  font-weight: 400;
 }
 
 .page__container {
   width: 100%;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
   margin: 0 auto;
