@@ -1,0 +1,116 @@
+.portfolio {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+
+.portfolio__container {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  width: 1140px;
+  height: 475px;
+}
+
+.portfolio__title {
+  display: flex;
+  margin: 50px 0 50px 0;
+  padding: 0;
+  font-family: 'Inter', Arial, sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 20px;
+  color: #A0A0A0;
+  width: 100%;
+}
+
+.portfolio__menu {
+  display: grid;
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+  gap: 20px
+}
+
+.portfolio__menu-block {
+  padding: 0 0 19px 0;
+  margin: 0;
+  border-bottom: 1px solid rgba(232, 232, 232, 1);
+  width: 1140px;
+  background: url(../../images/arrow.svg) no-repeat right top;
+  background-size: 29px 60px;
+}
+
+.portfolio__menu-link {
+  color: #000000;
+  font-size: 30px;
+  line-height: 50px;
+  font-family: 'Inter', Arial, sans-serif;
+  font-weight: 400;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+}
+
+.portfolio__menu-block:hover {
+  opacity: 0.4;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 1150px){
+  .portfolio__container {
+    width: 668px;
+    height: 435px;
+  }
+}
+
+@media screen and (max-width: 1150px){
+  .portfolio__title {
+    margin-top: 45px;
+  }
+}
+
+@media screen and (max-width: 1150px){
+  .portfolio__menu-link {
+    font-size: 28px;
+  }
+}
+
+@media screen and (max-width: 1150px){
+  .portfolio__menu-block {
+    width: 668px;
+    background-size: 27px 60px;
+  }
+}
+
+@media screen and (max-width: 720px){
+  .portfolio__container {
+    width: 292px;
+    height: 328px;
+  }
+}
+
+@media screen and (max-width: 720px){
+  .portfolio__title {
+    margin: 35px 0 40px 0;
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 720px){
+  .portfolio__menu-block {
+    width: 292px;
+    background-size: 18px 28px;
+    background: url(../../images/arrow-mob.svg) no-repeat right top;
+  }
+}
+
+@media screen and (max-width: 720px){
+  .portfolio__menu-link {
+    font-size: 18px;
+    line-height: 28px;
+  }
+}
