@@ -44,6 +44,10 @@
   background-size: 29px 60px;
 }
 
+.portfolio__menu-block_no-line {
+  border-bottom: none;
+}
+
 .portfolio__menu-link {
   color: #000000;
   font-size: 30px;

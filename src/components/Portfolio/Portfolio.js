@@ -10,7 +10,7 @@ function Portfolio() {
           <ul className="portfolio__menu">
             <li><a className="portfolio__menu-link" href="/"><div className="portfolio__menu-block">Статичный сайт</div></a></li>
             <li><a className="portfolio__menu-link" href="/"><div className="portfolio__menu-block">Адаптивный сайт</div></a></li>
-            <li><a className="portfolio__menu-link" href="/"><div className="portfolio__menu-block">Одностраничное приложение</div></a></li>
+            <li><a className="portfolio__menu-link" href="/"><div className="portfolio__menu-block portfolio__menu-block_no-line">Одностраничное приложение</div></a></li>
           </ul>
         </nav>
       </div>
