@@ -1,6 +1,7 @@
 .profile {
   display: flex;
   flex-direction: column;
+  align-items: center;
   margin: 0;
   padding: 0;
 }
@@ -11,13 +12,13 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100%;
+  height: 700px;
 }
 
 .profile__title {
   display: flex;
   justify-content: center;
-  margin: 74px 0 123px 0;
+  margin: 74px 0 106px 0;
   padding: 0;
   font-family: 'Inter', Arial, sans-serif;
   font-weight: 500;
@@ -28,37 +29,46 @@
 .profile__form {
   display: flex;
   flex-direction: column;
+  align-items: center;
   margin: 0;
   padding: 0;
   width: 410px;
+  font-family: 'Inter', Arial, sans-serif;
+  font-weight: 500;
+  font-size: 11px;
+  line-height: 13px;
+  color: rgba(0, 0, 0, 1);
 }
 
 .profile__block-input {
   display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 16px 0 17px 0;
+  margin: 0;
+  border-bottom: 1px solid rgba(232, 232, 232, 1);
+  position: relative;
 }
 
 .profile__input-title {
-  color: rgba(160, 160, 160, 1);
-  font-size: 10px;
-  line-height: 12px;
-  font-weight: 400;
-  margin: 0;
   padding: 0;
+  margin: 0;
+  width: 20%;
 }
 
 .profile__input {
-  position: relative;
   border: 0;
-  width: 100%;
-  padding: 5px 0 10px 0;
-  margin: 0 0 24px 0;
+  padding: 0;
+  margin: 0;
   background-color: transparent;
   outline: none;
   box-sizing: border-box;
-  border-bottom: 1px solid rgba(232, 232, 232, 1);
-  font-size: 14px;
-  line-height: 17px;
-  color: rgba(0, 0, 0, 1);
+  text-align: end;
+  width: 80%;
+}
+
+.profile__input_not-line {
+  border-bottom: none;
 }
 
 .profile__input_aktiv {
@@ -73,26 +83,25 @@
   padding: 0;
   display: none;
   position: absolute;
-  top: 51px;
+  z-index: 1;
+  top: 30px;
+  right: 0;
 }
 
 .profile__error_aktiv {
-  display: block;
+  display: flex;
 }
 
 .profile__button {
-
-  height: 45px;
-  background-size: 358px 50px;
-  color: #FFFFFF;
+  color: #000000;
   border: 0;
-  margin: 197px 0 16px 0;
+  margin: 204px 0 16px 0;
   padding: 0;
   border-radius: 3px;
-  font-size: 18px;
-  line-height: 22px;
+  font-size: 13px;
+  line-height: 16px;
   font-weight: 400;
-  background-color: rgba(52, 86, 243, 1);
+  background-color: #FFFFFF;
 }
 
 .profile__button:hover {
@@ -106,58 +115,68 @@
   align-items: center;
   padding: 0;
   margin: 0;
-}
-
-.profile__menu-txt {
-  color: rgba(160, 160, 160, 1);
-  font-size: 14px;
-  line-height: 17px;
-  font-weight: 400;
-  margin: 0 6px 0 0;
-  padding: 0;
+  text-decoration: none;
 }
 
 .profile__menu-link {
-  color: rgba(52, 86, 243, 1);
-  font-size: 14px;
-  line-height: 17px;
+  color: #EE3465;
+  font-size: 13px;
+  line-height: 16px;
+  font-weight: 500;
   margin: 0;
   padding: 0;
+  text-decoration: none;
+  font-family: 'Inter', Arial, sans-serif;
 }
 
 .profile__menu-link:hover {
-  opacity: 0.6;
+  opacity: 0.5;
   cursor: pointer;
 }
 
 @media screen and (max-width: 1150px){
-  .profile__title {
-    margin: 236px 0 96px 0;
+  .profile__container {
+    height: 1024px;
   }
 }
 
-@media screen and (max-width: 720px){
-  .profile {
-    align-items: flex-start;
+@media screen and (max-width: 1150px){
+  .profile__title {
+    margin: 236px 0 80px 0;
+  }
+}
+
+@media screen and (max-width: 1150px){
+  .profile__button {
+    margin: 194px 0 16px 0;
   }
 }
 
 @media screen and (max-width: 720px){
   .profile__container {
-    margin-top: 56px;
+    height: 780px;
+    width: 292px;
   }
 }
 
 @media screen and (max-width: 720px){
   .profile__title {
-    margin: 70px 0 80px 0;
+    margin: 70px 0 64px 0;
+    font-size: 24px;
+    line-height: 29px;
+    font-weight: 500;
+  }
+}
+
+@media screen and (max-width: 720px){
+  .profile__form {
+    width: 260px;
   }
 }
 
 @media screen and (max-width: 720px){
   .profile__button {
-
-    margin: 285px 0 14px 0;
+    margin: 363px 0 16px 0;
     font-size: 12px;
     line-height: 15px;
     font-weight: 500;
@@ -166,15 +185,6 @@
 
 @media screen and (max-width: 720px){
   .profile__menu-link {
-    font-size: 12px;
-    line-height: 15px;
-    font-weight: 400;
-    margin-bottom: 30px;
-  }
-}
-
-@media screen and (max-width: 720px){
-  .profile__menu-txt {
     font-size: 12px;
     line-height: 15px;
     font-weight: 400;
