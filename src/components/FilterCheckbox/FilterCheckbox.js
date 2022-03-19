@@ -1,11 +1,12 @@
 import React from "react";
-import { Link } from 'react-router-dom';
 import './FilterCheckbox.css';
 
 function FilterCheckbox() {
   return (
     <div className="filter-checkbox">
-      <Link className="filter-checkbox__link" to="/" />
+        <div className="filter-checkbox__button "/>
+        <input className="filter-checkbox__container" type="checkbox" />
+        <p className="filter-checkbox__txt">Короткометражки</p>
     </div>
   );
 
