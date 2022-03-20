@@ -6,6 +6,7 @@
   width: 100%;
   margin: 0;
   padding: 0;
+  font-family: 'Inter', Arial, sans-serif;
 }
 
 .about-me__container {
@@ -20,7 +21,6 @@
 .about-me__title {
   border-bottom: 1px solid rgba(232, 232, 232, 1);
   width: 100%;
-  font-family: 'Inter', Arial, sans-serif;
   font-weight: 400;
   margin: 110px 0 0 0;
   padding: 0 0 23px 0;
@@ -63,7 +63,6 @@
 }
 
 .about-me__info {
-  font-family: 'Inter', Arial, sans-serif;
   font-weight: 400;
   margin: 0;
   padding: 0;
@@ -82,7 +81,6 @@
 .about-me__link {
   padding: 0;
   margin: 0;
-  font-family: 'Inter', Arial, sans-serif;
   font-size: 14px;
   line-height: 17px;
   font-weight: 500;
