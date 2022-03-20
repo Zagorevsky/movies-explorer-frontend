@@ -1,0 +1,123 @@
+.nav-mob {
+  display: flex;
+  justify-content:flex-end;
+  position: fixed;
+  background-color: rgba(0, 0, 0, .5);
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  color: #000000;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s, visibility 0s linear 0.5s;
+  z-index: 2;
+}
+
+.nav-mob__container {
+  width: 520px;
+  height: 100%;
+  background-color: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  z-index: 3;
+}
+
+.nav-mob_opened {
+  opacity: 1;
+  visibility: visible;
+  transition-delay: 0s;
+}
+
+.nav-mob__close {
+  width: 32px;
+  height: 32px;
+  right: 8px;
+  top: 12px;
+  position: absolute;
+  background-image: url(../../images/close.svg);
+  background-color: transparent;
+  border: 0;
+  background-repeat: no-repeat;
+}
+
+.popup__close:hover {
+  opacity: 0.6;
+  cursor: pointer;
+}
+
+.nav-mob__menu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 159px 0 0 0;
+  gap: 28px;
+}
+
+.nav-mob__link {
+  margin: 0;
+  padding: 0;
+  font-size: 18px;
+  line-height: 22px;
+  font-family: 'Inter', Arial, sans-serif;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 1);
+  text-decoration: none;
+}
+
+.nav-mob__link_aktiv {
+  border-bottom: 2px solid rgba(0, 0, 0, 1);
+}
+
+.nav-mob__link:hover {
+  opacity: 0.6;
+  cursor: pointer;
+}
+
+.nav-mob__link-button {
+  padding: 0;
+  margin: 593px 0 0 0;
+}
+
+.nav-mob__link-button-img {
+  background-image: url(../../images/profile.svg);
+  height: 32px;
+  width: 100px;
+  background-size: 100px 32px;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-mob__link-button-img:hover {
+  opacity: 0.6;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 720px){
+  .nav-mob__container {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 720px){
+  .nav-mob__close {
+    width: 22px;
+    height: 22px;
+    right: 13px;
+    top: 13px;
+    background-size: 22px 22px;
+  }
+}
+
+@media screen and (max-width: 720px){
+  .nav-mob__menu {
+    gap: 24px;
+  }
+}
+
+@media screen and (max-width: 720px){
+  .nav-mob__link-button {
+    margin: 420px 0 0 0;
+  }
+}
