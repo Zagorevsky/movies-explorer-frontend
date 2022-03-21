@@ -9,9 +9,9 @@ function Footer() {
         <div className="footer__block">
           <p className="footer__copyright">&copy; 2020</p>
             <ul className="footer__menu">
-              <li><a className="footer__menu-link" href="/">Яндекс.Практикум</a></li>
-              <li><a className="footer__menu-link" href="https://github.com">Github</a></li>
-              <li><a className="footer__menu-link" href="https://www.facebook.com">Facebook</a></li>
+              <li><a className="footer__menu-link" target="_blank" rel="noreferrer" href="https://practicum.yandex.ru/">Яндекс.Практикум</a></li>
+              <li><a className="footer__menu-link" target="_blank" rel="noreferrer" href="https://github.com">Github</a></li>
+              <li><a className="footer__menu-link" target="_blank" rel="noreferrer" href="https://www.facebook.com">Facebook</a></li>
             </ul>
         </div>
       </div>

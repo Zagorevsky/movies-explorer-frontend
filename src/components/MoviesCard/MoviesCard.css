@@ -15,7 +15,7 @@
   padding: 0;
   height: 134px;
   width: 1140px;
-  background: rgba(244, 244, 244, 1);
+  background: #F4F4F4;
 }
 
 .movies-card__block-txt {
@@ -49,7 +49,7 @@
   color: rgba(160, 160, 160, 1);
 }
 
-.movies-card__like-or-delete {
+.movies-card__like {
   width: 14px;
   height: 12px;
   background-image: url(../../images/like.svg);
@@ -58,8 +58,12 @@
   padding: 0;
 }
 
-.movies-card__like-or-delete_aktiv {
+.movies-card__like_aktiv {
   background-image: url(../../images/like-aktiv.svg);
+}
+
+.movies-card__like_delit {
+  background-image: url(../../images/like-delit.svg);
 }
 
 .movies-card__image {
@@ -110,8 +114,6 @@
     margin: 0;
   }
 }
-
-
 
 @media screen and (max-width: 720px){
   .movies-card__image {

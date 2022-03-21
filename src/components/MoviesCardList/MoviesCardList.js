@@ -13,10 +13,10 @@ function MoviesCardList() {
   return (
     <div className="movies-card-list">
       <div className="movies-card-list__container">
-        <MoviesCard title="33 слова о дизайне" duration="1ч50" link={ movis1 } />
+        <MoviesCard title="33 слова о дизайне" duration="1ч50" link={ movis1 } isLiked="true"/>
         <MoviesCard title="Киноальманах «100 лет дизайна»" duration="1ч50" link={ movis2 } />
         <MoviesCard title="В погоне за Бенкси" duration="1ч50" link={ movis3 } />
-        <MoviesCard title="Баския: Взрыв реальности" duration="1ч50" link={ movis4 } />
+        <MoviesCard title="Баския: Взрыв реальности" duration="1ч50" link={ movis4 } isLiked="true"/>
         <MoviesCard title="Бег это свобода" duration="1ч50" link={ movis5 } />
         <MoviesCard title="Книготорговцы" duration="1ч50" link={ movis6 } />
         <MoviesCard title="Когда я думаю о Германии ночью" duration="1ч50" link={ movis7 } />

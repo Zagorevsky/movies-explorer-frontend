@@ -3,7 +3,7 @@ import './AboutMe.css';
 
 function AboutMe() {
   return (
-    <div className="about-me">
+    <div id="about-me" className="about-me">
       <div className="about-me__container">
         <h2 className="about-me__title">Студент</h2>
         <ul className="about-me__tab">
@@ -16,8 +16,8 @@ function AboutMe() {
               начал заниматься фриланс-заказами и ушёл с постоянной работы.</p>
             <nav>
               <ul className="about-me__menu">
-                <li><a className="about-me__link" href="https://github.com">Github</a></li>
-                <li><a className="about-me__link" href="https://www.facebook.com">Facebook</a></li>
+                <li><a className="about-me__link" target="_blank" rel="noreferrer" href="https://github.com">Github</a></li>
+                <li><a className="about-me__link" target="_blank" rel="noreferrer" href="https://www.facebook.com">Facebook</a></li>
               </ul>
             </nav>
           </li>
