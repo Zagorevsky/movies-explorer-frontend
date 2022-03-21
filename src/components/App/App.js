@@ -1,8 +1,8 @@
 import React from 'react';
 import { Route, Switch, BrowserRouter } from 'react-router-dom';
 import './App.css';
-import Main from "../Main/Main.js";
-import Movies from "../Movies/Movies.js";
+import Main from "../Main/Main";
+import Movies from "../Movies/Movies";
 import SavedMovies from '../SavedMovies/SavedMovies';
 import Register from '../Register/Register';
 import Login from '../Login/Login';
