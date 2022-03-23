@@ -72,9 +72,9 @@
   line-height: 12px;
   margin: 0;
   padding: 0;
-  display: none;
+  display: block;
   position: absolute;
-  top: 51px;
+  top: 46px;
 }
 
 .register__error_aktiv {
@@ -94,6 +94,10 @@
   line-height: 22px;
   font-weight: 400;
   background-color: rgba(52, 86, 243, 1);
+}
+
+.register__button_disabled {
+  opacity: 0.3;
 }
 
 .register__button:hover {

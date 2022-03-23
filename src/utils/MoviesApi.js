@@ -1,6 +1,6 @@
-import BASE_URL_MUVIES from './utils.js'
 import handlerError from './MainApi'
 
+export const BASE_URL_MUVIES = 'https://api.nomoreparties.co';
 
 // проверка состояния авторизации
 export const checkAuth = () => {

@@ -1,4 +1,4 @@
-import BASE_URL_MAIN from './utils.js'
+export const BASE_URL_MAIN = 'https://api.kino-exp.students.nomoredomains.xyz';
 
 // создание пользователя
 export const register = (name, email, password) => {

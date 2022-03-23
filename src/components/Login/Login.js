@@ -1,9 +1,18 @@
-import React from "react";
 import { Link } from 'react-router-dom';
 import './Login.css';
 import Logo from '../Logo/Logo';
+import { useFormAndValidation } from '../../hooks/useFormAndValidation'
 
-function Login() {
+function Login(onAuthUser) {
+
+  const { values, handleChange, errors, isValid, setValues, resetForm } = useFormAndValidation();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    onAuthUser(setValues);
+    resetForm();
+  }
+
   return (
     <div className="login">
       <div className="login__container">
