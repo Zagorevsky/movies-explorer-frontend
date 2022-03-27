@@ -7,10 +7,12 @@ import Techs from "../Techs/Techs.js";
 import AboutMe from "../AboutMe/AboutMe.js";
 import Portfolio from "../Portfolio/Portfolio.js";
 import Footer from '../Footer/Footer';
+import Header from "../Header/Header";
 
-function Main() {
+function Main({ loggedIn }) {
   return (
     <div className="main">
+      <div className="main__header"><Header loggedIn={ loggedIn }/></div>
       <Promo />
       <NavTab />
       <AboutProject />

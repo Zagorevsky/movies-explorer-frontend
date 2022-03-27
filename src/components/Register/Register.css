@@ -58,7 +58,7 @@
   color: rgba(0, 0, 0, 1);
 }
 
-.register__input_aktiv {
+.register__input_valid {
   border-bottom: 1px solid rgba(52, 86, 243, 1);
 }
 

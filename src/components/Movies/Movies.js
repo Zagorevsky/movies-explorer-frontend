@@ -6,10 +6,11 @@ import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import Header from "../Header/Header"
 import Preloader from "../Preloader/Preloader"
 
-function Movies() {
+function Movies({ loggedIn }) {
+
   return (
     <div className="movies">
-      <Header />
+      <Header loggedIn={ loggedIn }/>
       <SearchForm />
       <MoviesCardList />
       <div className="movies__preloader"><Preloader  /></div>

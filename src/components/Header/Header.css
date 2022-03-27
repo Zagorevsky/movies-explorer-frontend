@@ -7,23 +7,23 @@
 }
 
 .header__container {
-  display: grid;
-  grid-template-columns: repeat(2, auto);
+  display: flex;
   align-items: center;
-  gap: 426px;
+  justify-content: space-between;
   margin: 0;
   padding: 0;
   height: 74px;
+  width: 1140px;
 }
 
 @media screen and (max-width: 1150px){
   .header__container {
-    gap: 626px;
+    width: 708px;
   }
 }
 
 @media screen and (max-width: 720px){
   .header__container {
-    gap: 214px;
+    width: 300px;
   }
 }

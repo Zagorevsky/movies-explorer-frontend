@@ -65,14 +65,15 @@
   box-sizing: border-box;
   text-align: end;
   width: 80%;
+  color: rgba(0, 0, 0, 1);
 }
 
 .profile__input_not-line {
   border-bottom: none;
 }
 
-.profile__input_aktiv {
-  border-bottom: 1px solid rgba(52, 86, 243, 1);
+.profile__input_error {
+  color: rgba(238, 52, 101, 1);
 }
 
 .profile__error {
@@ -81,15 +82,11 @@
   line-height: 12px;
   margin: 0;
   padding: 0;
-  display: none;
+  display: block;
   position: absolute;
   z-index: 1;
   top: 30px;
   right: 0;
-}
-
-.profile__error_aktiv {
-  display: flex;
 }
 
 .profile__button {

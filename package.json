@@ -17,7 +17,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint": "npx eslint ."
+    "lint": "npx eslint .",
+    "deploy": "npm run build && scp -r ./build/* pboul-ooo@178.154.223.233:/home/pboul-ooo/frontend"
   },
   "eslintConfig": {
     "extends": [
