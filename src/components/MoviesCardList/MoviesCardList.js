@@ -1,30 +1,53 @@
-import React from "react";
-import './MoviesCardList.css';
-import MoviesCard from "../MoviesCard/MoviesCard";
-import movis1 from "../../images/movie-1.svg"
-import movis2 from "../../images/movie-2.svg"
-import movis3 from "../../images/movie-3.svg"
-import movis4 from "../../images/movie-4.svg"
-import movis5 from "../../images/movie-5.svg"
-import movis6 from "../../images/movie-6.svg"
-import movis7 from "../../images/movie-7.svg"
+import React, { Suspense, useState } from "react";
+import "./MoviesCardList.css";
+import Preloader from "../Preloader/Preloader";
+const MoviesCard = React.lazy(() => import("../MoviesCard/MoviesCard"));
 
-function MoviesCardList() {
+function MoviesCardList(props) {
+  const [counter, setCounter] = useState(7);
+
+  function downloadingMovies() {
+    setCounter(counter + 7);
+  }
   return (
-    <div className="movies-card-list">
-      <div className="movies-card-list__container">
-        <MoviesCard title="33 слова о дизайне" duration="1ч50" link={ movis1 } isLiked="true"/>
-        <MoviesCard title="Киноальманах «100 лет дизайна»" duration="1ч50" link={ movis2 } />
-        <MoviesCard title="В погоне за Бенкси" duration="1ч50" link={ movis3 } />
-        <MoviesCard title="Баския: Взрыв реальности" duration="1ч50" link={ movis4 } isLiked="true"/>
-        <MoviesCard title="Бег это свобода" duration="1ч50" link={ movis5 } />
-        <MoviesCard title="Книготорговцы" duration="1ч50" link={ movis6 } />
-        <MoviesCard title="Когда я думаю о Германии ночью" duration="1ч50" link={ movis7 } />
-      </div>
-      <button className="movies-card-list__button" type="submit" >Ещё</button>
-    </div>
+    <>
+      <section className="movies-card-list">
+        <Suspense fallback={ <Preloader /> }>
+          { props.message ? (
+            <p className="movies-card-list__container">{ props.message }</p>
+          ) : (
+            props.movies
+              .slice(0, counter)
+              .map((movie, id) => (
+                <MoviesCard movie={ movie } name={ movie.nameRU } duration={ movie.duration }
+                  key={ id } id={ movie._id } { ...movie }
+                  isSavedMovies={ props.isSavedMovies }
+                  onAddMovie={ props.onAddMovie }
+                  onDelete={ props.onDelete }
+                  savedMovies={ props.savedMovies }
+                  likedMovies={ props.likedMovies }
+                />
+              ))
+          ) }
+        </Suspense>
+      </section>
+      { props.movies.length >= 7 &&
+        props.movies.length > counter &&
+        props.movies.length <= 100 &&
+        !props.message ? (
+        <section className="movies-card-list__container">
+          <div
+            type="button"
+            onClick={ downloadingMovies }
+            className="movies-card-list__button">
+            Ещё
+          </div>
+        </section>
+      ) : (
+        ""
+      ) }
+    </>
   );
-
-};
+}
 
 export default MoviesCardList;

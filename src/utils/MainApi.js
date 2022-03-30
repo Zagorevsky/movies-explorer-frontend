@@ -82,9 +82,11 @@ export const deleteMovie = (id) => {
     .then(handlerError);
 }
 
-export const handlerError = (res) => {
+function handlerError (res) {
   if (res.ok) {
     return res.json();
   }
   return Promise.reject(`Ошибка: ${res.status}`);
 }
+
+export default handlerError;

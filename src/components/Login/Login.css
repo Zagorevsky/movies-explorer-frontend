@@ -78,6 +78,23 @@
   top: 46px;
 }
 
+.login__button-container {
+  position: relative;
+}
+
+.login__form-error {
+  color: rgba(238, 52, 101, 1);
+  font-size: 10px;
+  line-height: 12px;
+  margin: 0;
+  padding: 0;
+  display: block;
+  position: absolute;
+  bottom: 70px;
+  width: 100%;
+  text-align: center;
+}
+
 .login__error_aktiv {
   display: block;
 }

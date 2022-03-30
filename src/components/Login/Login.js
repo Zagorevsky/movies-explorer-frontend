@@ -3,18 +3,18 @@ import './Login.css';
 import Logo from '../Logo/Logo';
 import { useFormAndValidation } from '../../hooks/useFormAndValidation';
 
-function Login({onAuthUser}) {
+function Login(props) {
 
   const { values, handleChange, errors, isValid, resetForm } = useFormAndValidation();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onAuthUser(values);
+    props.onAuthUser(values);
     resetForm();
   }
 
   return (
-    <div className="login">
+    <section className="login">
       <div className="login__container">
         <Logo />
         <p className="login__title">Рады видеть!</p>
@@ -35,6 +35,7 @@ function Login({onAuthUser}) {
           <div className="login__button-container">
             <button type="submit" className={ `login__button ${!isValid ?
               "login__button_disabled" : ""}` } >Войти</button>
+              <span className="login__form-error" >{ props.messageError }</span>
           </div>
         </form>
         <div className="login__menu">
@@ -42,7 +43,7 @@ function Login({onAuthUser}) {
           <Link to="/signup" className="login__menu-link">Регистрация</Link>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

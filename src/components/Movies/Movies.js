@@ -4,16 +4,23 @@ import SearchForm from "../SearchForm/SearchForm";
 import Footer from "../Footer/Footer";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import Header from "../Header/Header"
-import Preloader from "../Preloader/Preloader"
+// import Preloader from "../Preloader/Preloader"
 
-function Movies({ loggedIn }) {
+function Movies(props) {
 
   return (
     <div className="movies">
-      <Header loggedIn={ loggedIn }/>
-      <SearchForm />
-      <MoviesCardList />
-      <div className="movies__preloader"><Preloader  /></div>
+      <Header loggedIn={ props.loggedIn } />
+      <SearchForm
+        onShortMovies={ props.onShortMovies }
+        onSearchQuery={ props.onSearchQuery }
+        messageError={ props.messageError }
+        likedMovies ={ props.likedMovies }
+      />
+      <MoviesCardList
+        movies={ props.movies }
+
+      />
       <Footer />
     </div>
   );

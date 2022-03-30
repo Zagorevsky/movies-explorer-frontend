@@ -2,6 +2,7 @@
   display: flex;
   align-items: center;
   flex-direction: column;
+  gap: 40px;
   margin: 0;
   padding: 0;
 }
@@ -10,12 +11,14 @@
   display: flex;
   align-items: center;
   flex-direction: column;
-  gap: 40px;
   margin: 70px 0 0 0;
   padding: 0;
 }
 
 .movies-card-list__button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 320px;
   height: 36px;
   background-size: 320px 36px;
@@ -26,6 +29,7 @@
   border-radius: 6px;
   font-size: 12px;
   line-height: 15px;
+  text-align: center;
   font-weight: 500;
   font-family: 'Inter', Arial, sans-serif;
   background: rgba(244, 244, 244, 1);

@@ -58,6 +58,11 @@
   padding: 0;
 }
 
+.movies-card__like:hover {
+  opacity: 0.5;
+  cursor: pointer;
+}
+
 .movies-card__like_aktiv {
   background-image: url(../../images/like-aktiv.svg);
 }
@@ -67,11 +72,10 @@
 }
 
 .movies-card__image {
-  background-size: 220px 122px;
   width: 220px;
   height: 122px;
-  padding: 0;
-  margin: 6px 6px 6px 0;
+  object-fit: cover;
+  margin: 6px 6px 6px auto;
 }
 
 @media screen and (max-width: 1150px){

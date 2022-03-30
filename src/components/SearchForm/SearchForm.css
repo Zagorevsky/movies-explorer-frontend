@@ -50,7 +50,7 @@
   padding: 0;
   left: 22px;
   top: 50px;
-  display: none;
+  display: block;
   position: absolute;
 }
 

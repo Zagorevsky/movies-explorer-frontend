@@ -77,6 +77,23 @@
   top: 46px;
 }
 
+.register__button-container {
+  position: relative;
+}
+
+.register__form-error {
+  color: rgba(238, 52, 101, 1);
+  font-size: 10px;
+  line-height: 12px;
+  margin: 0;
+  padding: 0;
+  display: block;
+  position: absolute;
+  bottom: 70px;
+  width: 100%;
+  text-align: center;
+}
+
 .register__error_aktiv {
   display: block;
 }
@@ -94,6 +111,7 @@
   line-height: 22px;
   font-weight: 400;
   background-color: rgba(52, 86, 243, 1);
+  position: relative;
 }
 
 .register__button_disabled {
