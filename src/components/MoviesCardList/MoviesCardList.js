@@ -13,11 +13,12 @@ function MoviesCardList(props) {
     <>
       <section className="movies-card-list">
         <Suspense fallback={ <Preloader /> }>
-          { props.message ? (
-            <p className="movies-card-list__container">{ props.message }</p>
+          { props.moviesMessage ? (
+            <p className="movies-card-list__container">{ props.moviesMessage }</p>
           ) : (
             props.movies
               .slice(0, counter)
+              .filter(movie => !props.short || movie.duration <= 40)
               .map((movie, id) => (
                 <MoviesCard movie={ movie } name={ movie.nameRU } duration={ movie.duration }
                   key={ id } id={ movie._id } { ...movie }
@@ -31,17 +32,14 @@ function MoviesCardList(props) {
           ) }
         </Suspense>
       </section>
-      { props.movies.length >= 7 &&
+      { props.movies.length >= 1 &&
         props.movies.length > counter &&
         props.movies.length <= 100 &&
         !props.message ? (
         <section className="movies-card-list__container">
-          <div
-            type="button"
+          <div type="button"
             onClick={ downloadingMovies }
-            className="movies-card-list__button">
-            Ещё
-          </div>
+            className="movies-card-list__button">Ещё</div>
         </section>
       ) : (
         ""

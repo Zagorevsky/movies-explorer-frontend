@@ -18,6 +18,7 @@ function Profile(props) {
   }
 
   useEffect(() => {
+    resetForm();
     setValues({ name: currentUser.name, email: currentUser.email });
   }, []);
 

@@ -19,7 +19,6 @@ function App() {
   const [currentUser, setCurrentUser] = useState({ name: '', email: '' });
   const [isSending, setIsSending] = useState(false);
 
-  const [movies, setMovies] = useState([]);
   const [sortedMovies, setSortedMovies] = useState([]);
   const [userMovies, setUserMovies] = useState([]);
   const [messageError, setMessageError] = useState("");
@@ -41,6 +40,10 @@ function App() {
     handleLoginCheck(location.pathname)
   }, [])
 
+  useEffect(() => {
+    setMessageError('')
+  }, [navigate])
+
   const handleLoginCheck = (path) => {
     auth
       .checkAuth()
@@ -52,64 +55,16 @@ function App() {
         }
       })
       .catch((err) => {
-        if (err === 401) {
-          setMessageError("Пользователь с таким email не найден");
-        }
-        if (err === 400) {
-          setMessageError("Неверный email или пароль");
-        } else {
-          setMessageError("При авторизации произошла ошибка");
-        }
+        console.log(err)
       })
   }
 
-  const handleLogout = (event) => {
-    event.preventDefault();
+  const handleLogout = (e) => {
+    e.preventDefault();
     setCurrentUser({ name: '', email: '' });
     setLoggedIn(false);
     navigate('/signin');
   }
-
-  useEffect(() => {
-    getAllmovies();
-  }, [searchQuery])
-
-  const getAllmovies = () => {
-    setIsSending(true);
-    moviesApi
-      .getInitialMovies()
-      .then((allMovies) => {
-        setMovies(allMovies);
-        localStorage.setItem("movies", JSON.stringify(allMovies));
-      })
-      .catch((err) => {
-        console.log(`Ошибка: ${err}`);
-        localStorage.removeItem("movies");
-      })
-      .finally(() => setIsSending(false));
-  }
-
-  useEffect(() => {
-    setMessageError("");
-    const key = new RegExp(searchQuery, "gi");
-    console.log(key);
-    const findedMovies = movies.filter(
-      (item) => key.test(item.nameRU) || key.test(item.nameEN)
-    );
-    if (findedMovies.length === 0) {
-      setMessageError("Ничего не найдено");
-    } else {
-      setMessageError("");
-      const checkedLikes = findedMovies.map((movie) => {
-        movie.isSaved = userMovies.some(
-          (userMovie) => userMovie.movieId === movie.id
-        );
-        return movie;
-      });
-      setSortedMovies(checkedLikes);
-      localStorage.setItem("sortedMovies", JSON.stringify(checkedLikes));
-    }
-  }, [movies])
 
 
   // регистрация нового пользователя
@@ -124,10 +79,10 @@ function App() {
         }
       })
       .catch(err => {
-        if (err === 409) {
-          setMessageError("Пользователь с таким email уже существует");
+        if (err === 'Ошибка: 409') {
+          setMessageError("Пользователь с таким email уже существует.");
         } else {
-          setMessageError("При регистрации пользователя произошла ошибка");
+          setMessageError("При регистрации пользователя произошла ошибка.");
         }
       })
       .finally(() => setIsSending(false));
@@ -147,11 +102,11 @@ function App() {
       })
       .catch(
         (err) => {
-          console.log(`Ошибка: ${err}`);
-          if (err.status === 409) {
-            setMessageError("Пользователь с таким email уже существует");
+          console.log(err);
+          if (err === 'Ошибка: 401') {
+            setMessageError("Вы ввели неправильный логин или пароль.");
           } else {
-            setMessageError("При изменении данных профиля произошла ошибка");
+            setMessageError("При авторизации пользователя произошла ошибка.");
           }
         })
       .finally(() => setIsSending(false));
@@ -167,11 +122,13 @@ function App() {
           email: newProfile.email,
         })
       })
-      .catch((err) => { console.log(err) })
+      .catch(() => {
+        setMessageError('При обновлении профиля произошла ошибка.');
+      })
       .finally(() => setIsSending(false));
   }
 
-  const chekLikedMovies = () => {}
+  const chekLikedMovies = () => { }
 
   return (
     <CurrentUserContext.Provider value={ currentUser }>
@@ -181,13 +138,11 @@ function App() {
             <Route path="/movies" element={
               <ProtectedRoute loggedIn={ loggedIn }>
                 <Movies
-                  movies={ movies }
                   onShortMovies={ handleShortMovies }
                   onSearchQuery={ setSearchQuery }
                   loggedIn={ loggedIn }
-                  messageError={ messageError }
-                  likedMovies={chekLikedMovies}
-                  />
+                  likedMovies={ chekLikedMovies }
+                />
               </ProtectedRoute> } />
             <Route path="/saved-movies" element={
               <ProtectedRoute loggedIn={ loggedIn }>

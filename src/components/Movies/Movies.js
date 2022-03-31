@@ -1,30 +1,90 @@
-import React from "react";
+import React, { useState, useEffect } from 'react';
 import './Movies.css';
 import SearchForm from "../SearchForm/SearchForm";
 import Footer from "../Footer/Footer";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
-import Header from "../Header/Header"
+import Header from "../Header/Header";
+import * as moviesApi from '../../utils/MoviesApi';
 // import Preloader from "../Preloader/Preloader"
 
 function Movies(props) {
+  const [movies, setMovies] = useState([]);
+  const [filteredMovies, setFilteredMovies] = useState([]);
+  const [query, setQuery] = useState("");
+  const [short, setShort] = useState(false);
+  const [moviesMessage, setMoviesMessage] = useState("");
 
-  return (
-    <div className="movies">
-      <Header loggedIn={ props.loggedIn } />
-      <SearchForm
-        onShortMovies={ props.onShortMovies }
-        onSearchQuery={ props.onSearchQuery }
-        messageError={ props.messageError }
-        likedMovies ={ props.likedMovies }
-      />
-      <MoviesCardList
-        movies={ props.movies }
+  const updateMovies = (movies) => {
+    setMovies(movies);
+    localStorage.setItem('movies', JSON.stringify(movies));
+  };
+  const updateFilteredMovies = (movies) => {
+    setFilteredMovies(movies);
+    localStorage.setItem('filteredMovies', JSON.stringify(movies));
+  };
+  const updateQuery = (query) => {
+    setQuery(query);
+    localStorage.setItem('query', query);
+  };
+  const updateShort = (short) => {
+    setShort(short);
+    localStorage.setItem('short', JSON.stringify(short));
+  };
 
-      />
-      <Footer />
-    </div>
-  );
+  useEffect(() => {
+    const movies = JSON.parse(localStorage.getItem('movies') || '[]');
 
-};
+    updateMovies(movies);
+    updateFilteredMovies(JSON.parse(localStorage.getItem('filteredMovies') || '[]'));
+    updateQuery(localStorage.getItem('query') || '');
+    updateShort(JSON.parse(localStorage.getItem('short') || 'false'));
 
-export default Movies;
+    if (!movies.length) {
+      moviesApi
+        .getInitialMovies()
+        .then(movies => {
+          updateMovies(movies);
+          updateFilteredMovies(movies);
+        });
+    }
+  }, []);
+
+  const handleSubmit = (e) => {
+    setMoviesMessage("")
+    e.preventDefault();
+    const key = new RegExp(query, "gi");
+    if (query.length) {
+      updateFilteredMovies(movies.filter(item => key.test(item.nameRU) || key.test(item.nameEN)));
+      if (filteredMovies.length === 0) {
+        setMoviesMessage("Ничего не найдено");
+      } else {
+        setMoviesMessage("");
+      }} else {
+        setMoviesMessage("Необходимо ввести запрос!")
+      };
+    }
+
+    return (
+      <div className="movies">
+        <Header loggedIn={ props.loggedIn } />
+        <SearchForm
+          onShortMovies={ props.onShortMovies }
+          query={ query }
+          onSubmit={ handleSubmit }
+          updateQuery={ updateQuery }
+          short={ short }
+          updateShort={ updateShort }
+        />
+        <MoviesCardList
+          movies={ filteredMovies }
+          moviesMessage={ moviesMessage }
+          likedMovies={ props.likedMovies }
+          short={ short }
+        />
+        <Footer />
+      </div>
+    );
+
+  };
+
+  export default Movies;

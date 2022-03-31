@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import './FilterCheckbox.css';
 
 function FilterCheckbox(props) {
@@ -8,7 +8,7 @@ function FilterCheckbox(props) {
       <label className="filter-checkbox__container">
         Короткометражки
         <input className="filter-checkbox__checkbox" type="checkbox" name="short-movies"
-          onChange={ props.onShortMovies }
+          checked={ props.short } onChange={() => props.updateShort(!props.short)}
         />
         <span className="filter-checkbox__checkmark"></span>
       </label>
