@@ -1,5 +1,4 @@
-import handlerError from './MainApi.js'
-
+import handlerError from './MainApi.js';
 export const BASE_URL_MUVIES = 'https://api.nomoreparties.co';
 
 // получение всех фильмов

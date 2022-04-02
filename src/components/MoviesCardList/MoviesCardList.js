@@ -23,11 +23,10 @@ function MoviesCardList(props) {
                 <MoviesCard movie={ movie } name={ movie.nameRU } duration={ movie.duration }
                   key={ id } id={ movie._id } { ...movie }
                   isSavedMovies={ props.isSavedMovies }
-                  onAddMovie={ props.onAddMovie }
-                  onDelete={ props.onDelete }
                   savedMovies={ props.savedMovies }
-                  likedMovies={ props.likedMovies }
-                  isLiked = {true}
+                  updateMoviesUser={props.updateMoviesUser}
+                  movies={ props.movies }
+                  setMoviesUser={ props.setMoviesUser }
                 />
               ))
           ) }

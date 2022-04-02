@@ -6,23 +6,13 @@ import * as auth from '../../utils/MainApi';
 function MoviesCard(props) {
   const [liked, setliked] = useState(false);
 
-  const chekLikedMovies = () => {
-
-  }
+  useEffect(() => {
+    const userMovies = JSON.parse(localStorage.getItem('moviesUser'));
+    setliked(userMovies.some((userMovie) => userMovie.movieId === props.movie.id))
+  }, [])
 
   const сlickLikedMovies = () => {
-    if (props.isSavedMovies) {
-
-    } else if (liked) {
-      auth
-        .deleteMovie(props.id)
-        .then(movies => {
-          setliked(false);
-        })
-        .catch((err) => {
-          console.log(err)
-        });
-    } else {
+    if (!props.isSavedMovies && !liked) {
       auth
         .createMovie({
           "country": props.movie.country,
@@ -40,14 +30,23 @@ function MoviesCard(props) {
           "nameEN": props.movie.nameEN,
         })
         .then(movies => {
+          props.movie._id = movies._id
           setliked(true);
+          props.updateMoviesUser()
         })
         .catch((err) => {
-          console.log("2");
+          console.log(err)
+        });
+    } else {
+      auth
+        .deleteMovie(props.movie._id)
+        .then(movies => {
+          setliked(false);
+        })
+        .catch((err) => {
           console.log(err)
         });
     }
-
   }
 
   return (
