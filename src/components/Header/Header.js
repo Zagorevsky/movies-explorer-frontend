@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, { useEffect, useState } from "react";
 import './Header.css';
 import Logo from '../Logo/Logo';
 import Navigation from '../Navigation/Navigation';
@@ -8,15 +8,18 @@ import NavReg from "../NavReg/NavReg";
 
 function Header({ loggedIn }) {
 
-  useEffect(() => {
-  }, [loggedIn])
+  useEffect(() => {}, [loggedIn])
+
+  const [isOpenMenu, setIsOpenMenu] = useState(false);
 
   return (
     <header className="header">
       <div className="header__container">
         <Logo />
-        { loggedIn ? <Navigation /> : <NavReg />}
-        <NavMob />
+        { loggedIn ?
+          <Navigation setIsOpenMenu={setIsOpenMenu}/> :
+          <NavReg /> }
+        <NavMob setIsOpenMenu={setIsOpenMenu} isOpen={isOpenMenu}/>
       </div>
     </header>
   );

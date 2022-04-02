@@ -15,33 +15,21 @@ import * as moviesApi from '../../utils/MoviesApi';
 
 function App() {
 
-  const [loggedIn, setLoggedIn] = useState(true);
+  const [loggedIn, setLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({ name: '', email: '' });
   const [isSending, setIsSending] = useState(false);
 
-  const [sortedMovies, setSortedMovies] = useState([]);
-  const [userMovies, setUserMovies] = useState([]);
   const [messageError, setMessageError] = useState("");
-  const [searchQuery, setSearchQuery] = useState("");
-  const [shortMovies, setShortMovies] = useState(true);
 
   const navigate = useNavigate();
   const location = useLocation();
-
-  const handleLogin = () => {
-    setLoggedIn(true);
-  }
-
-  const handleShortMovies = () => {
-    setShortMovies(!shortMovies);
-  }
 
   useEffect(() => {
     handleLoginCheck(location.pathname)
   }, [])
 
   useEffect(() => {
-    setMessageError('')
+    setMessageError('');
   }, [navigate])
 
   const handleLoginCheck = (path) => {
@@ -50,7 +38,7 @@ function App() {
       .then(res => {
         if (res.email) {
           setCurrentUser({ name: res.name, email: res.email });
-          handleLogin();
+          setLoggedIn(true);
           navigate(path);
         }
       })
@@ -96,7 +84,7 @@ function App() {
       .then(res => {
         if (res.data._id) {
           setCurrentUser({ name: res.name, email: res.email });
-          handleLogin();
+          setLoggedIn(true);
           navigate('/movies');
         }
       })
@@ -115,8 +103,9 @@ function App() {
   const handleUpdateUser = (profile) => {
     setIsSending(true);
     auth
-      .updateProfile(profile)
+      .updateProfile(profile.name, profile.email)
       .then((newProfile) => {
+        setLoggedIn(true);
         setCurrentUser({
           name: newProfile.name,
           email: newProfile.email,
@@ -128,8 +117,6 @@ function App() {
       .finally(() => setIsSending(false));
   }
 
-  const chekLikedMovies = () => { }
-
   return (
     <CurrentUserContext.Provider value={ currentUser }>
       <div className="page">
@@ -138,16 +125,12 @@ function App() {
             <Route path="/movies" element={
               <ProtectedRoute loggedIn={ loggedIn }>
                 <Movies
-                  onShortMovies={ handleShortMovies }
-                  onSearchQuery={ setSearchQuery }
                   loggedIn={ loggedIn }
-                  likedMovies={ chekLikedMovies }
                 />
               </ProtectedRoute> } />
             <Route path="/saved-movies" element={
               <ProtectedRoute loggedIn={ loggedIn }>
                 <SavedMovies
-                  onShortMovies={ handleShortMovies }
                   loggedIn={ loggedIn }
                 />
               </ProtectedRoute> } />
@@ -157,6 +140,7 @@ function App() {
                   onUpdateUser={ handleUpdateUser }
                   logOut={ handleLogout }
                   messageError={ messageError }
+                  loggedIn={ loggedIn }
                 />
               </ProtectedRoute> } />
             <Route path="/signup" element={

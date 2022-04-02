@@ -5,7 +5,6 @@ import Footer from "../Footer/Footer";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import Header from "../Header/Header";
 import * as moviesApi from '../../utils/MoviesApi';
-// import Preloader from "../Preloader/Preloader"
 
 function Movies(props) {
   const [movies, setMovies] = useState([]);
@@ -18,14 +17,17 @@ function Movies(props) {
     setMovies(movies);
     localStorage.setItem('movies', JSON.stringify(movies));
   };
+
   const updateFilteredMovies = (movies) => {
     setFilteredMovies(movies);
     localStorage.setItem('filteredMovies', JSON.stringify(movies));
   };
+
   const updateQuery = (query) => {
     setQuery(query);
     localStorage.setItem('query', query);
   };
+
   const updateShort = (short) => {
     setShort(short);
     localStorage.setItem('short', JSON.stringify(short));
@@ -45,7 +47,8 @@ function Movies(props) {
         .then(movies => {
           updateMovies(movies);
           updateFilteredMovies(movies);
-        });
+        })
+        .catch((err) => { console.log(err) });
     }
   }, []);
 
@@ -80,6 +83,7 @@ function Movies(props) {
           moviesMessage={ moviesMessage }
           likedMovies={ props.likedMovies }
           short={ short }
+          isSavedMovies ={ false }
         />
         <Footer />
       </div>

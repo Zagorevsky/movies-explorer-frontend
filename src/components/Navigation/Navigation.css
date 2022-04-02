@@ -44,59 +44,64 @@
   cursor: pointer;
 }
 
-.navigation__link-button {
-  margin: 0;
-  padding: 0;
-}
-
-.navigation__link-button-img {
+.navigation__link-profile {
   position: relative;
   background-image: url(../../images/profile.svg);
   height: 32px;
   width: 100px;
   background-size: 100px 32px;
+  border: 0;
+  background-color: transparent;
   margin: 0;
   padding: 0;
 }
 
-.navigation__link-button-img:hover {
+.navigation__link-profile:hover {
   opacity: 0.6;
   cursor: pointer;
 }
 
-@media screen and (max-width: 1150px){
+.navigation__link-nav-reg:hover {
+  opacity: 0.6;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 1150px) {
   .navigation__container {
     width: 44px;
     height: 44px;
   }
 }
 
-@media screen and (max-width: 1150px){
+@media screen and (max-width: 1150px) {
   .navigation__block-txt {
     display: none;
   }
 }
 
-@media screen and (max-width: 1150px){
-  .navigation__link-button-img {
+@media screen and (max-width: 1150px) {
+  .navigation__link-profile {
+    position: relative;
     background-image: url(../../images/menu.svg);
     height: 44px;
     width: 44px;
     background-size: 44px 44px;
+    border: 0;
+    background-color: transparent;
+    margin: 0;
+    padding: 0;
   }
 }
 
-
-
-@media screen and (max-width: 720px){
+@media screen and (max-width: 720px) {
   .navigation__container {
     width: 40px;
     height: 43px;
   }
 }
 
-@media screen and (max-width: 720px){
-  .navigation__link-button-img {
+@media screen and (max-width: 720px) {
+  .navigation__link-nav-reg {
     height: 43px;
     width: 40px;
     background-size: 40px 43px;

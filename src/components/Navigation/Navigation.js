@@ -2,7 +2,10 @@ import React from "react";
 import { Link } from 'react-router-dom';
 import './Navigation.css';
 
-function Navigation() {
+function Navigation(props) {
+
+  const screenWidth = window.screen.width;
+
   return (
     <div className="navigation">
       <nav
@@ -22,9 +25,9 @@ function Navigation() {
             </Link>
           </li>
         </ul>
-        <Link className="navigation__link-button" to="/profile">
-          <div className="navigation__link-button-img"></div>
-        </Link>
+        { screenWidth > 1150 ?
+          <Link className="navigation__link-profile" to="/profile" /> :
+          <button className="navigation__link-profile"  onClick={ ()=>props.setIsOpenMenu(true) }/> }
       </nav>
     </div>
   );

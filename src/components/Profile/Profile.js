@@ -20,13 +20,13 @@ function Profile(props) {
   useEffect(() => {
     resetForm();
     setValues({ name: currentUser.name, email: currentUser.email });
-  }, []);
+  }, [currentUser]);
 
   return (
     <section className="profile">
       <div className="profile__container">
-        <Header />
-        <p className="profile__title">Привет, Виталий!</p>
+        <Header loggedIn={ props.loggedIn } />
+        <p className="profile__title">Привет, { values.name }!</p>
         <form className="profile__form" onSubmit={ handleSubmit } name="profile">
           <div className="profile__block-input">
             <p className="profile__input-title">Имя</p>

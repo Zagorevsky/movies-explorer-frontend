@@ -27,6 +27,7 @@ function MoviesCardList(props) {
                   onDelete={ props.onDelete }
                   savedMovies={ props.savedMovies }
                   likedMovies={ props.likedMovies }
+                  isLiked = {true}
                 />
               ))
           ) }

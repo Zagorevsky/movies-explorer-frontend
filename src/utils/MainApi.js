@@ -42,28 +42,28 @@ export const checkAuth = () => {
 }
 
 // изменение данных профиля
-export const updateProfile = (data) => {
+export const updateProfile = (name, email) => {
   return fetch(`${BASE_URL_MAIN}/users/me`, {
     method: 'PATCH',
     headers: {
       'Accept': 'application/json',
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(data),
+    body: JSON.stringify({name, email}),
     credentials: 'include'
   })
     .then(handlerError);
 }
 
 // добавления фильма в избранное
-export const createMovie = (data) => {
-  return fetch(`${BASE_URL_MAIN}/movies/`, {
+export const createMovie = (movie) => {
+    return fetch(`${BASE_URL_MAIN}/movies/`, {
     method: 'POST',
     headers: {
       'Accept': 'application/json',
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(data),
+    body: JSON.stringify(movie),
     credentials: 'include'
   })
     .then(handlerError);
@@ -73,6 +73,18 @@ export const createMovie = (data) => {
 export const deleteMovie = (id) => {
   return fetch(`${BASE_URL_MAIN}/movies/${id}`, {
     method: 'DELETE',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+    },
+    credentials: 'include'
+  })
+    .then(handlerError);
+}
+
+export const getUserMovies = () => {
+  return fetch(`${BASE_URL_MAIN}/movies/`, {
+    method: 'GET',
     headers: {
       'Accept': 'application/json',
       'Content-Type': 'application/json',
