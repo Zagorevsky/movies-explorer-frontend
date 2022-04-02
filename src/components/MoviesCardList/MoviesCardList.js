@@ -27,6 +27,7 @@ function MoviesCardList(props) {
                   updateMoviesUser={props.updateMoviesUser}
                   movies={ props.movies }
                   setMoviesUser={ props.setMoviesUser }
+                  setFilteredMoviesUser={ props.setFilteredMoviesUser }
                 />
               ))
           ) }

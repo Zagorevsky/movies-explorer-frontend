@@ -1,15 +1,22 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, setState } from 'react';
+import { Route, Routes, useNavigate, useLocation } from 'react-router-dom';
 import './MoviesCard.css';
 import { baseUrl } from "../../utils/utils.js";
 import * as auth from '../../utils/MainApi';
 
 function MoviesCard(props) {
+
   const [liked, setliked] = useState(false);
 
   useEffect(() => {
     const userMovies = JSON.parse(localStorage.getItem('moviesUser'));
-    setliked(userMovies.some((userMovie) => userMovie.movieId === props.movie.id))
-  }, [])
+    userMovies.map((userMovie) => {
+      if (userMovie.movieId === props.movie.id) {
+        setliked(true);
+        props.movie._id = userMovie._id
+      }
+    })
+  }, [setliked])
 
   const сlickLikedMovies = () => {
     if (!props.isSavedMovies && !liked) {
@@ -29,10 +36,12 @@ function MoviesCard(props) {
           "nameRU": props.movie.nameRU,
           "nameEN": props.movie.nameEN,
         })
-        .then(movies => {
-          props.movie._id = movies._id
+        .then(res => {
+          props.movie._id = res._id
+          const moviesUser = JSON.parse(localStorage.getItem('moviesUser'));
+          const newSavedMovies = [res, ...moviesUser];
+          localStorage.setItem('moviesUser', JSON.stringify(newSavedMovies));
           setliked(true);
-          props.updateMoviesUser()
         })
         .catch((err) => {
           console.log(err)
@@ -40,8 +49,15 @@ function MoviesCard(props) {
     } else {
       auth
         .deleteMovie(props.movie._id)
-        .then(movies => {
-          setliked(false);
+        .then(res => {
+          const moviesUser = JSON.parse(localStorage.getItem('moviesUser'));
+          const newSavedMovies = moviesUser.filter((c) => c._id !== props.movie._id);
+          localStorage.setItem('moviesUser', JSON.stringify(newSavedMovies));
+          if(props.isSavedMovies) {
+            props.setMoviesUser(newSavedMovies);
+            props.setFilteredMoviesUser(newSavedMovies);
+          }
+          else {setliked(false);}
         })
         .catch((err) => {
           console.log(err)

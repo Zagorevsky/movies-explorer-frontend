@@ -43,7 +43,7 @@ function SavedMovies(props) {
     updateShortUser(JSON.parse(localStorage.getItem('shortUser') || 'false'));
 
     getUserMovies();
-  }, []);
+  }, [setMoviesUser]);
 
   const getUserMovies = () => {
     auth
@@ -91,6 +91,7 @@ function SavedMovies(props) {
         short={ shortUser }
         isSavedMovies={ true }
         setMoviesUser={ setMoviesUser }
+        setFilteredMoviesUser={ setFilteredMoviesUser }
       />
       <Footer />
     </div>
