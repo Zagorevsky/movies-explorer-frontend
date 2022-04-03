@@ -17,7 +17,7 @@ function App() {
 
   const [loggedIn, setLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({ name: '', email: '' });
-  const [isSending, setIsSending] = useState(false);
+  const [isSending, setIsSending] = useState('');
 
   const [messageError, setMessageError] = useState("");
 
@@ -62,18 +62,17 @@ function App() {
     setLoggedIn(false);
     setIsSending(false);
     setMessageError('');
-    navigate('/signin');
+    navigate('/');
   }
 
   // регистрация нового пользователя
   const handleRegisterUser = (user) => {
-    setIsSending(true);
     auth
       .register(user.name, user.email, user.password)
       .then(res => {
         if (res.email) {
           setLoggedIn(true);
-          navigate('/movies');
+          navigate('/movies')
         }
       })
       .catch(err => {
@@ -82,13 +81,11 @@ function App() {
         } else {
           setMessageError("При регистрации пользователя произошла ошибка.");
         }
-      })
-      .finally(() => setIsSending(false));
+      });
   }
 
   // авторизация пользователя
   const handleAuthUser = (user) => {
-    setIsSending(true);
     auth
       .authorize(user.email, user.password)
       .then(res => {
@@ -106,15 +103,14 @@ function App() {
           } else {
             setMessageError("При авторизации пользователя произошла ошибка.");
           }
-        })
-      .finally(() => setIsSending(false));
+        });
   }
 
   const handleUpdateUser = (profile) => {
-    setIsSending(true);
     auth
       .updateProfile(profile.name, profile.email)
       .then((newProfile) => {
+        setIsSending('')
         setLoggedIn(true);
         setCurrentUser({
           name: newProfile.name,
@@ -124,7 +120,6 @@ function App() {
       .catch(() => {
         setMessageError('При обновлении профиля произошла ошибка.');
       })
-      .finally(() => setIsSending(false));
   }
 
   return (

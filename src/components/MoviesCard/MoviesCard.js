@@ -9,7 +9,7 @@ function MoviesCard(props) {
   const [liked, setliked] = useState(false);
 
   useEffect(() => {
-    const userMovies = JSON.parse(localStorage.getItem('moviesUser'));
+    const userMovies = JSON.parse(localStorage.getItem('moviesUser') || '[]');
     userMovies.map((userMovie) => {
       if (userMovie.movieId === props.movie.id) {
         setliked(true);
