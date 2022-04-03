@@ -49,11 +49,21 @@ function App() {
 
   const handleLogout = (e) => {
     e.preventDefault();
+    localStorage.removeItem("jwt");
+    localStorage.removeItem("movies");
+    localStorage.removeItem("filteredMovies");
+    localStorage.removeItem("query");
+    localStorage.removeItem("short");
+    localStorage.removeItem("moviesUser");
+    localStorage.removeItem("filteredMoviesUser");
+    localStorage.removeItem("queryUser");
+    localStorage.removeItem("shortUser");
     setCurrentUser({ name: '', email: '' });
     setLoggedIn(false);
+    setIsSending(false);
+    setMessageError('');
     navigate('/signin');
   }
-
 
   // регистрация нового пользователя
   const handleRegisterUser = (user) => {
