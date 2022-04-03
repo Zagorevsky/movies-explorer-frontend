@@ -41,6 +41,20 @@ export const checkAuth = () => {
   .then(handlerError)
 }
 
+// выход
+export const logOut= () => {
+  return fetch(`${BASE_URL_MAIN}/signout`, {
+    method: 'GET',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+    },
+    credentials: 'include'
+  })
+  .then(handlerError)
+}
+
+
 // изменение данных профиля
 export const updateProfile = (name, email) => {
   return fetch(`${BASE_URL_MAIN}/users/me`, {
@@ -93,6 +107,9 @@ export const getUserMovies = () => {
   })
     .then(handlerError);
 }
+
+
+
 
 function handlerError (res) {
   if (res.ok) {
