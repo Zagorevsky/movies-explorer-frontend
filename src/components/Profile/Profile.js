@@ -44,7 +44,8 @@ function Profile(props) {
           <div className="profile__button-container">
             <button type="submit" className={ `profile__button ${!isValid ?
               "profile__button_disabled" : ""}` } disabled={ !isValid }>Редактировать</button>
-            <span className="profile__form-error" >{ props.messageError }</span>
+            <span className={ `profile__form-error ${props.isSending ?
+              "profile__form-error_no" : ""}` } >{ props.messageError }{props.isSending}</span>
           </div>
         </form>
         <div className="profile__menu">

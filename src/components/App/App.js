@@ -114,10 +114,11 @@ function App() {
   }
 
   const handleUpdateUser = (profile) => {
+    setIsSending('');
     auth
       .updateProfile(profile.name, profile.email)
       .then((newProfile) => {
-        setIsSending('')
+        setIsSending('Профиль был успешно обнавлен');
         setLoggedIn(true);
         setCurrentUser({
           name: newProfile.name,
@@ -153,6 +154,7 @@ function App() {
                   logOut={ handleLogout }
                   messageError={ messageError }
                   loggedIn={ loggedIn }
+                  isSending={ isSending }
                 />
               </ProtectedRoute> } />
             <Route path="/signup" element={

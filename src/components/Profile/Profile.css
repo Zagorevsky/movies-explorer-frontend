@@ -107,6 +107,11 @@
   text-align: center;
 }
 
+.profile__form-error_no {
+  color: rgba(52, 86, 243, 1);
+  font-size: 10px;
+  line-height: 12px;
+}
 
 .profile__button {
   color: #000000;
