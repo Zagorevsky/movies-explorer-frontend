@@ -130,6 +130,10 @@
   cursor: pointer;
 }
 
+.profile__button_disabled {
+  opacity: 0.2;
+}
+
 .profile__menu {
   display: flex;
   justify-content: center;
