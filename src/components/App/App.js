@@ -36,7 +36,6 @@ function App() {
     auth
       .checkAuth()
       .then(res => {
-        console.log(res)
         if (res.email) {
           setCurrentUser({ name: res.name, email: res.email });
           setLoggedIn(true);
@@ -158,14 +157,14 @@ function App() {
                   isSending={ isSending }
                 />
               </ProtectedRoute> } />
-            <Route path="/signup" element={ loggedIn ? <Navigate to="/" /> :
+            <Route path="/signup" element={ loggedIn ? <Navigate to='/movies' /> :
               <Register
                 onRegisterUser={ handleRegisterUser }
                 messageError={ messageError }
                 isReqSending={ isSending }
               /> } />
             {}
-            <Route path="/signin" element={ loggedIn ? <Navigate to="/" /> :
+            <Route path="/signin" element={ loggedIn ? <Navigate to="/movies" /> :
               <Login
                 onAuthUser={ handleAuthUser }
                 messageError={ messageError }

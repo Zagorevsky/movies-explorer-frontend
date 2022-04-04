@@ -6,6 +6,7 @@ import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import Header from "../Header/Header";
 import * as moviesApi from '../../utils/MoviesApi';
 
+
 function Movies(props) {
   const [movies, setMovies] = useState([]);
   const [filteredMovies, setFilteredMovies] = useState([]);
@@ -62,33 +63,34 @@ function Movies(props) {
         setMoviesMessage("Ничего не найдено");
       } else {
         setMoviesMessage("");
-      }} else {
-        setMoviesMessage("Необходимо ввести запрос!")
-      };
-    }
+      }
+    } else {
+      setMoviesMessage("Необходимо ввести запрос!")
+    };
+  }
 
-    return (
-      <div className="movies">
-        <Header loggedIn={ props.loggedIn } />
-        <SearchForm
-          onShortMovies={ props.onShortMovies }
-          query={ query }
-          onSubmit={ handleSubmit }
-          updateQuery={ updateQuery }
-          short={ short }
-          updateShort={ updateShort }
-        />
-        <MoviesCardList
-          movies={ filteredMovies }
-          moviesMessage={ moviesMessage }
-          likedMovies={ props.likedMovies }
-          short={ short }
-          isSavedMovies ={ false }
-        />
-        <Footer />
-      </div>
-    );
+  return (
+    <div className="movies">
+      <Header loggedIn={ props.loggedIn } />
+      <SearchForm
+        onShortMovies={ props.onShortMovies }
+        query={ query }
+        onSubmit={ handleSubmit }
+        updateQuery={ updateQuery }
+        short={ short }
+        updateShort={ updateShort }
+      />
+      <MoviesCardList
+        movies={ filteredMovies }
+        moviesMessage={ moviesMessage }
+        likedMovies={ props.likedMovies }
+        short={ short }
+        isSavedMovies={ false }
+      />
+      <Footer />
+    </div>
+  );
 
-  };
+};
 
-  export default Movies;
+export default Movies;
