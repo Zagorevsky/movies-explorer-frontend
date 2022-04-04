@@ -31,14 +31,14 @@ function Profile(props) {
           <div className="profile__block-input">
             <p className="profile__input-title">Имя</p>
             <input className={ values.name ? `profile__input ${errors.name ? "profile__input_error" : ""}` : "profile__input" } required id="name" name="name"
-              type="text" defaultValue={ currentUser.name } onChange={ handleChange } minLength="2" maxLength="30" />
+              type="text" defaultValue={ values.name } onChange={ handleChange } minLength="2" maxLength="30" />
             <span id="email-error" className="profile__error" >{ errors.name }</span>
           </div>
           <div className="profile__block-input profile__input_not-line">
             <p className="profile__input-title ">E-mail</p>
             <input className={ values.email ? `profile__input ${errors.email ? "profile__input_error" : ""}` : "profile__input" }
               required id="email" name="email"
-              type="email" defaultValue={ currentUser.email } onChange={ handleChange } />
+              type="email" defaultValue={ values.email } onChange={ handleChange } />
             <span id="email-error" className="profile__error">{ errors.email }</span>
           </div>
           <div className="profile__button-container">

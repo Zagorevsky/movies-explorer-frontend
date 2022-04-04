@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Route, Routes, useNavigate, useLocation } from 'react-router-dom';
+import { Route, Routes, Navigate, useNavigate, useLocation } from 'react-router-dom';
 import './App.css';
 import Main from "../Main/Main";
 import Movies from "../Movies/Movies";
@@ -157,13 +157,14 @@ function App() {
                   isSending={ isSending }
                 />
               </ProtectedRoute> } />
-            <Route path="/signup" element={
+            <Route path="/signup" element={ loggedIn ? <Navigate to="/" /> :
               <Register
                 onRegisterUser={ handleRegisterUser }
                 messageError={ messageError }
                 isReqSending={ isSending }
               /> } />
-            <Route path="/signin" element={
+            {}
+            <Route path="/signin" element={ loggedIn ? <Navigate to="/" /> :
               <Login
                 onAuthUser={ handleAuthUser }
                 messageError={ messageError }
