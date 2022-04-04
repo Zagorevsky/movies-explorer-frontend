@@ -54,7 +54,6 @@ export const logOut= () => {
   .then(handlerError)
 }
 
-
 // изменение данных профиля
 export const updateProfile = (name, email) => {
   return fetch(`${BASE_URL_MAIN}/users/me`, {
