@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './Profile.css';
 import Header from '../Header/Header';
 import { useFormAndValidation } from '../../hooks/useFormAndValidation';
@@ -18,7 +18,6 @@ function Profile(props) {
   }
 
   useEffect(() => {
-    resetForm();
     setValues({ name: currentUser.name, email: currentUser.email });
   }, [currentUser.name, currentUser.email]);
 

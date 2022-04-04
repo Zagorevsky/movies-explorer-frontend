@@ -36,6 +36,7 @@ function App() {
     auth
       .checkAuth()
       .then(res => {
+        console.log(res)
         if (res.email) {
           setCurrentUser({ name: res.name, email: res.email });
           setLoggedIn(true);
@@ -96,7 +97,7 @@ function App() {
       .authorize(user.email, user.password)
       .then(res => {
         if (res.data._id) {
-          setCurrentUser({ name: res.name, email: res.email });
+          setCurrentUser({ name: res.data.name, email: res.data.email });
           setLoggedIn(true);
           navigate('/movies');
         }
