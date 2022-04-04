@@ -33,8 +33,7 @@ function MoviesCardList(props) {
           ) }
         </Suspense>
       </section>
-      { props.movies.length >= 1 &&
-        props.movies.length > counter &&
+      { props.movies.length > counter &&
         props.movies.length <= 100 &&
         !props.message ? (
         <section className="movies-card-list__container">
