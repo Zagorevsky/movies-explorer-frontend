@@ -13,10 +13,7 @@ function Login(props) {
   const [formValid, setFormValid] = useState(false);
 
   function handleChangeEmail(e) {
-    const validEmail = /^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i.test(
-      e.target.value
-    );
-
+    const validEmail = /^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i.test(e.target.value);
     if (!validEmail) {
       setEmailError("Неверный формат почты");
     } else {

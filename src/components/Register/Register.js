@@ -6,13 +6,59 @@ import { useFormAndValidation } from '../../hooks/useFormAndValidation'
 
 export default function Register(props) {
 
-  const { values, handleChange, errors, isValid, resetForm } = useFormAndValidation();
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [nameError, setNameError] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+  const [formValid, setFormValid] = useState(false);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    props.onRegisterUser(values);
-    resetForm();
+  function handleChangeName(e) {
+    const validName = /^[a-zA-Z- ]+$/.test(e.target.value);
+
+    if (e.target.value.length < 2) {
+      setNameError("Длина имени должна быть не менее 2 символов");
+    } else if (e.target.value.length > 30) {
+      setNameError("Длина имени должна должна быть не более 30 символов");
+    } else if (!validName) {
+      setNameError("Имя должно быть указано латинcкими буквами");
+    } else {
+      setNameError("");
+    }
+    setName(e.target.value);
   }
+
+  function handleChangeEmail(e) {
+    const validEmail = /^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i.test(e.target.value);
+    if (!validEmail) {
+      setEmailError("Неверный формат почты");
+    } else {
+      setEmailError("");
+    }
+    setEmail(e.target.value);
+  }
+
+  function handleChangePassword(e) {
+    if (e.target.value.length < 8) {
+      setPasswordError("Пароль должен быть не менее 8 символов");
+    } else {
+      setPasswordError("");
+    }
+    setPassword(e.target.value);
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    if (!email || !password) {
+      return;
+    }
+    props.onRegisterUser({ name, email, password });
+  }
+
+  useEffect(() => {
+    if (name && email && password && !nameError && !emailError && !passwordError) { setFormValid(true); } else { setFormValid(false); }
+  }, [name, email, password, nameError, emailError, passwordError]);
 
   return (
     <section className="register">
@@ -22,27 +68,27 @@ export default function Register(props) {
         <form onSubmit={ handleSubmit } className="register__form" name="register">
           <div className="register__block-input">
             <p className="register__input-title">Имя</p>
-            <input className={ values.name ? `register__input ${errors.name ? "register__input_error" : "register__input_valid"}` : "register__input" } required id="name" name="name"
-              type="text" defaultValue={ values.name } onChange={ handleChange } minLength="2" maxLength="30" />
-            <span id="email-error" className="register__error" >{ errors.name }</span>
+            <input className={ name ? `register__input ${nameError ? "register__input_error" : "register__input_valid"}` : "register__input" } id="name" name="name"
+              type="text" value={ name } onChange={ handleChangeName } />
+            <span id="email-error" className="register__error" >{ nameError }</span>
           </div>
           <div className="register__block-input">
             <p className="register__input-title">E-mail</p>
-            <input className={ values.email ? `register__input ${errors.email ? "register__input_error" : "register__input_valid"}` : "register__input" }
-              required id="email" name="email"
-              type="email" defaultValue={ values.email } onChange={ handleChange } />
-            <span className="register__error">{ errors.email }</span>
+            <input className={ email ? `register__input ${emailError ? "register__input_error" : "register__input_valid"}` : "register__input" }
+              id="email" name="email"
+              type="email" value={ email } onChange={ handleChangeEmail } />
+            <span className="register__error">{ emailError }</span>
           </div>
           <div className="register__block-input">
             <p className="register__input-title">Пароль</p>
-            <input className={ values.password ? `register__input ${errors.password ? "register__input_error" : "register__input_valid"}` : "register__input" }
-              required id="password" name="password"
-              placeholder="" type="password" defaultValue={ values.password } onChange={ handleChange } minLength="8" />
-            <span className="register__error" >{ errors.password }</span>
+            <input className={ password ? `register__input ${passwordError ? "register__input_error" : "register__input_valid"}` : "register__input" }
+              id="password" name="password"
+              placeholder="" type="password" value={ password } onChange={ handleChangePassword } />
+            <span className="register__error" >{ passwordError }</span>
           </div>
           <div className="register__button-container">
-            <button type="submit" className={ `register__button ${!isValid ?
-              "register__button_disabled" : ""}` } disabled={ !isValid } >Зарегистрироваться</button>
+            <button type="submit" className={ `register__button ${!formValid ?
+              "register__button_disabled" : ""}` } disabled={ !formValid } >Зарегистрироваться</button>
             <span className="register__form-error" >{ props.messageError }</span>
           </div>
         </form>

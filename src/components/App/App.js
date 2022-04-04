@@ -118,6 +118,7 @@ function App() {
       .updateProfile(profile.name, profile.email)
       .then((newProfile) => {
         setIsSending('Профиль был успешно обнавлен');
+        setMessageError('')
         setLoggedIn(true);
         setCurrentUser({
           name: newProfile.name,
