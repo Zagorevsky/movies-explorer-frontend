@@ -3,6 +3,8 @@ import './FilterCheckbox.css';
 
 function FilterCheckbox(props) {
 
+
+
   return (
     <section className="filter-checkbox">
       <label className="filter-checkbox__container">

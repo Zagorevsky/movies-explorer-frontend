@@ -1,7 +1,8 @@
 export const BASE_URL_MAIN = 'https://api.kino-exp.students.nomoredomains.xyz';
 
 // создание пользователя
-export const register = (name, email, password) => {
+export const register = (user) => {
+  console.log(user)
   return fetch(`${BASE_URL_MAIN}/signup`, {
     method: 'POST',
     headers: {
@@ -9,7 +10,7 @@ export const register = (name, email, password) => {
       'Content-Type': 'application/json'
     },
     credentials: 'include',
-    body: JSON.stringify({ name, email, password })
+    body: JSON.stringify(user)
   })
   .then(handlerError)
 };
@@ -29,12 +30,13 @@ export const authorize = (email, password) => {
 };
 
 // проверка состояния авторизации
-export const checkAuth = () => {
+export const checkAuth = (token) => {
   return fetch(`${BASE_URL_MAIN}/users/me`, {
     method: 'GET',
     headers: {
       'Accept': 'application/json',
       'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`,
     },
     credentials: 'include'
   })

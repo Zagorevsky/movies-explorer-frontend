@@ -30,11 +30,12 @@ function App() {
 
   useEffect(() => {
     setMessageError('');
+    setIsSending('');
   }, [navigate])
 
   const handleLoginCheck = (path) => {
     auth
-      .checkAuth()
+      .checkAuth(localStorage.getItem('token'))
       .then(res => {
         if (res.email) {
           setCurrentUser({ name: res.name, email: res.email });
@@ -52,6 +53,7 @@ function App() {
     auth
       .logOut()
       .then(res => {
+        localStorage.clear();
         localStorage.removeItem("movies");
         localStorage.removeItem("filteredMovies");
         localStorage.removeItem("query");
@@ -74,11 +76,10 @@ function App() {
   // регистрация нового пользователя
   const handleRegisterUser = (user) => {
     auth
-      .register(user.name, user.email, user.password)
+      .register(user)
       .then(res => {
         if (res.email) {
-          setLoggedIn(true);
-          navigate('/movies')
+          handleAuthUser(user);
         }
       })
       .catch(err => {
@@ -163,7 +164,7 @@ function App() {
                 messageError={ messageError }
                 isReqSending={ isSending }
               /> } />
-            {}
+            { }
             <Route path="/signin" element={ loggedIn ? <Navigate to="/movies" /> :
               <Login
                 onAuthUser={ handleAuthUser }

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Route, Routes, Navigate, useNavigate, useLocation } from 'react-router-dom';
 import './Movies.css';
 import SearchForm from "../SearchForm/SearchForm";
 import Footer from "../Footer/Footer";
@@ -6,13 +7,17 @@ import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import Header from "../Header/Header";
 import * as moviesApi from '../../utils/MoviesApi';
 
-
 function Movies(props) {
   const [movies, setMovies] = useState([]);
   const [filteredMovies, setFilteredMovies] = useState([]);
   const [query, setQuery] = useState("");
   const [short, setShort] = useState(false);
   const [moviesMessage, setMoviesMessage] = useState("");
+
+  useEffect(() => {
+    setQuery('');
+    setShort(false);
+  }, [])
 
   const updateMovies = (movies) => {
     setMovies(movies);
@@ -22,6 +27,9 @@ function Movies(props) {
   const updateFilteredMovies = (movies) => {
     setFilteredMovies(movies);
     localStorage.setItem('filteredMovies', JSON.stringify(movies));
+    if (filteredMovies.length === 0) {
+      setMoviesMessage("Ничего не найдено");
+    }
   };
 
   const updateQuery = (query) => {
@@ -83,6 +91,7 @@ function Movies(props) {
       <MoviesCardList
         movies={ filteredMovies }
         moviesMessage={ moviesMessage }
+        setMoviesMessage={ setMoviesMessage }
         likedMovies={ props.likedMovies }
         short={ short }
         isSavedMovies={ false }

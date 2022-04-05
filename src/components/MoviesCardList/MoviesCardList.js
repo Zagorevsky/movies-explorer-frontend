@@ -1,4 +1,4 @@
-import React, { Suspense, useState } from "react";
+import React, { Suspense, useState, useEffect } from "react";
 import "./MoviesCardList.css";
 import Preloader from "../Preloader/Preloader";
 const MoviesCard = React.lazy(() => import("../MoviesCard/MoviesCard"));
@@ -35,7 +35,7 @@ function MoviesCardList(props) {
       </section>
       { props.movies.length > counter &&
         props.movies.length <= 100 &&
-        !props.message ? (
+        !props.moviesMessage ? (
         <section className="movies-card-list__container">
           <div type="button"
             onClick={ downloadingMovies }

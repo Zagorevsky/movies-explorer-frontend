@@ -15,6 +15,11 @@ function SavedMovies(props) {
   const [shortUser, setShortUser] = useState(false);
   const [moviesMessage, setMoviesMessage] = useState("");
 
+  useEffect(() => {
+    setQueryUser('');
+    setShortUser(false);
+  }, [])
+
   const updateMoviesUser = (moviesUser) => {
     setMoviesUser(moviesUser);
     localStorage.setItem('moviesUser', JSON.stringify(moviesUser));
