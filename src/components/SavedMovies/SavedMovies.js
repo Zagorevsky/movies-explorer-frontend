@@ -34,6 +34,7 @@ function SavedMovies(props) {
   const updateShortUser = (shortUser) => {
     setShortUser(shortUser);
     localStorage.setItem('shortUser', JSON.stringify(shortUser));
+    updateFilteredMoviesUser(moviesUser.filter(movie => !shortUser || movie.duration <= 40))
   };
 
   useEffect(() => {

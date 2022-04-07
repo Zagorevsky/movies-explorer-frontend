@@ -32,6 +32,7 @@ function Movies(props) {
   const updateShort = (short) => {
     setShort(short);
     localStorage.setItem('short', JSON.stringify(short));
+    updateFilteredMovies(movies.filter(movie => !short || movie.duration <= 40))
   };
 
   useEffect(() => {
@@ -81,7 +82,7 @@ function Movies(props) {
         updateShort={ updateShort }
       />
       <MoviesCardList
-        movies={ filteredMovies.filter(movie => !short || movie.duration <= 40) }
+        movies={ filteredMovies }
         moviesMessage={ moviesMessage }
         setMoviesMessage={ setMoviesMessage }
         likedMovies={ props.likedMovies }
