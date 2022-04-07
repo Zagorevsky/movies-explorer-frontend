@@ -15,23 +15,36 @@ import * as moviesApi from '../../utils/MoviesApi';
 
 function App() {
 
+  const [movies, setMovies] = useState([]);
+  const [moviesUser, setMoviesUser] = useState([]);
   const [loggedIn, setLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({ name: '', email: '' });
   const [isSending, setIsSending] = useState('');
-
   const [messageError, setMessageError] = useState("");
 
   const navigate = useNavigate();
   const location = useLocation();
 
   useEffect(() => {
-    handleLoginCheck(location.pathname)
+    handleLoginCheck(location.pathname);
   }, [])
 
   useEffect(() => {
     setMessageError('');
     setIsSending('');
   }, [navigate])
+
+  const getUserMovies = () => {
+    auth
+      .getUserMovies()
+      .then(moviesUser => {
+        setMoviesUser(moviesUser);
+        localStorage.setItem('moviesUser', JSON.stringify(moviesUser));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
 
   const handleLoginCheck = (path) => {
     auth
@@ -40,6 +53,7 @@ function App() {
         if (res.email) {
           setCurrentUser({ name: res.name, email: res.email });
           setLoggedIn(true);
+          getUserMovies();
           navigate(path);
         }
       })
@@ -54,17 +68,9 @@ function App() {
       .logOut()
       .then(res => {
         localStorage.clear();
-        localStorage.removeItem("movies");
-        localStorage.removeItem("filteredMovies");
-        localStorage.removeItem("query");
-        localStorage.removeItem("short");
-        localStorage.removeItem("moviesUser");
-        localStorage.removeItem("filteredMoviesUser");
-        localStorage.removeItem("queryUser");
-        localStorage.removeItem("shortUser");
         setCurrentUser({ name: '', email: '' });
         setLoggedIn(false);
-        setIsSending(false);
+        setIsSending('');
         setMessageError('');
         navigate('/');
       })
@@ -73,13 +79,12 @@ function App() {
       })
   }
 
-  // регистрация нового пользователя
   const handleRegisterUser = (user) => {
     auth
       .register(user)
       .then(res => {
         if (res.email) {
-          handleAuthUser(user);
+          handleAuthUser({email: user.email, password: user.password});
         }
       })
       .catch(err => {
@@ -91,14 +96,14 @@ function App() {
       });
   }
 
-  // авторизация пользователя
   const handleAuthUser = (user) => {
     auth
-      .authorize(user.email, user.password)
+      .authorize(user)
       .then(res => {
         if (res.data._id) {
           setCurrentUser({ name: res.data.name, email: res.data.email });
           setLoggedIn(true);
+          getUserMovies();
           navigate('/movies');
         }
       })

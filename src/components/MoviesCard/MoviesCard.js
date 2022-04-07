@@ -10,7 +10,7 @@ function MoviesCard(props) {
 
   useEffect(() => {
     const userMovies = JSON.parse(localStorage.getItem('moviesUser') || '[]');
-    userMovies.map((userMovie) => {
+    userMovies.forEach((userMovie) => {
       if (userMovie.movieId === props.movie.id) {
         setliked(true);
         props.movie._id = userMovie._id
@@ -29,7 +29,8 @@ function MoviesCard(props) {
           "description": props.movie.description,
           "image": `${baseUrl}${props.movie.image
             ? props.movie.image.url : ""}`,
-          "trailerLink": props.movie.trailerLink,
+          "trailerLink": `${props.movie.trailerLink
+          ? props.movie.trailerLink : baseUrl}`,
           "thumbnail": `${baseUrl}${props.movie.image.formats.thumbnail
             ? props.movie.image.formats.thumbnail.url : ""}`,
           "movieId": props.movie.id,

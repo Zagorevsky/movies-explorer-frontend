@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Route, Routes, Navigate, useNavigate, useLocation } from 'react-router-dom';
 import './Movies.css';
 import SearchForm from "../SearchForm/SearchForm";
 import Footer from "../Footer/Footer";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import Header from "../Header/Header";
 import * as moviesApi from '../../utils/MoviesApi';
+import { MIN } from "../../utils/utils";
 
 function Movies(props) {
   const [movies, setMovies] = useState([]);
@@ -13,11 +13,6 @@ function Movies(props) {
   const [query, setQuery] = useState("");
   const [short, setShort] = useState(false);
   const [moviesMessage, setMoviesMessage] = useState("");
-
-  useEffect(() => {
-    setQuery('');
-    setShort(false);
-  }, [])
 
   const updateMovies = (movies) => {
     setMovies(movies);
@@ -27,9 +22,6 @@ function Movies(props) {
   const updateFilteredMovies = (movies) => {
     setFilteredMovies(movies);
     localStorage.setItem('filteredMovies', JSON.stringify(movies));
-    if (filteredMovies.length === 0) {
-      setMoviesMessage("Ничего не найдено");
-    }
   };
 
   const updateQuery = (query) => {
@@ -73,7 +65,7 @@ function Movies(props) {
         setMoviesMessage("");
       }
     } else {
-      setMoviesMessage("Необходимо ввести запрос!")
+      updateFilteredMovies(movies);
     };
   }
 
@@ -89,17 +81,17 @@ function Movies(props) {
         updateShort={ updateShort }
       />
       <MoviesCardList
-        movies={ filteredMovies }
+        movies={ filteredMovies.filter(movie => !short || movie.duration <= 40) }
         moviesMessage={ moviesMessage }
         setMoviesMessage={ setMoviesMessage }
         likedMovies={ props.likedMovies }
         short={ short }
         isSavedMovies={ false }
+        counter={ MIN }
       />
       <Footer />
     </div>
   );
-
 };
 
 export default Movies;

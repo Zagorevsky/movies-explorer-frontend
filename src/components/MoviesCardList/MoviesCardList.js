@@ -1,10 +1,14 @@
-import React, { Suspense, useState, useEffect } from "react";
+import React, { Suspense, useState } from "react";
 import "./MoviesCardList.css";
 import Preloader from "../Preloader/Preloader";
+import { MIN, MAX } from "../../utils/utils";
+
 const MoviesCard = React.lazy(() => import("../MoviesCard/MoviesCard"));
 
+
 function MoviesCardList(props) {
-  const [counter, setCounter] = useState(7);
+
+  const [counter, setCounter] = useState(props.counter);
 
   function downloadingMovies() {
     setCounter(counter + 7);
@@ -18,13 +22,12 @@ function MoviesCardList(props) {
           ) : (
             props.movies
               .slice(0, counter)
-              .filter(movie => !props.short || movie.duration <= 40)
               .map((movie, id) => (
                 <MoviesCard movie={ movie } name={ movie.nameRU } duration={ movie.duration }
                   key={ id } id={ movie._id } { ...movie }
                   isSavedMovies={ props.isSavedMovies }
                   savedMovies={ props.savedMovies }
-                  updateMoviesUser={props.updateMoviesUser}
+                  updateMoviesUser={ props.updateMoviesUser }
                   movies={ props.movies }
                   setMoviesUser={ props.setMoviesUser }
                   setFilteredMoviesUser={ props.setFilteredMoviesUser }
@@ -33,9 +36,10 @@ function MoviesCardList(props) {
           ) }
         </Suspense>
       </section>
-      { props.movies.length > counter &&
-        props.movies.length <= 100 &&
-        !props.moviesMessage ? (
+      { props.movies.length >= MIN &&
+      props.movies.length > counter &&
+      props.movies.length <= MAX &&
+      !props.message  ? (
         <section className="movies-card-list__container">
           <div type="button"
             onClick={ downloadingMovies }
