@@ -30,6 +30,24 @@ function App() {
   }, [])
 
   useEffect(() => {
+    const movies = JSON.parse(localStorage.getItem('movies') || '[]');
+    setMovies(movies);
+    localStorage.setItem('movies', JSON.stringify(movies));
+
+    if (!movies.length) {
+      moviesApi
+        .getInitialMovies()
+        .then(movies => {
+          setMovies(movies);
+          localStorage.setItem('movies', JSON.stringify(movies));
+        })
+        .catch((err) => {
+          console.log(err)
+        });
+    }
+  }, []);
+
+  useEffect(() => {
     setMessageError('');
     setIsSending('');
   }, [navigate])
@@ -84,7 +102,7 @@ function App() {
       .register(user)
       .then(res => {
         if (res.email) {
-          handleAuthUser({email: user.email, password: user.password});
+          handleAuthUser({ email: user.email, password: user.password });
         }
       })
       .catch(err => {
