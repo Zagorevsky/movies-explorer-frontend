@@ -50,7 +50,9 @@ function Movies(props) {
           updateMovies(movies);
           updateFilteredMovies(movies);
         })
-        .catch((err) => { console.log(err) });
+        .catch((err) => {
+          setMoviesMessage("Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз");
+          console.log(err) });
     }
   }, []);
 
@@ -66,6 +68,7 @@ function Movies(props) {
         setMoviesMessage("");
       }
     } else {
+      setMoviesMessage("Нужно ввести ключевое слово");
       updateFilteredMovies(movies);
     };
   }

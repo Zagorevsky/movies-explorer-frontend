@@ -89,7 +89,7 @@ function App() {
       })
       .catch(err => {
         if (err === 'Ошибка: 409') {
-          setMessageError("Пользователь с таким email уже существует.");
+          setMessageError("Пользователь с таким email или name уже существует.");
         } else {
           setMessageError("При регистрации пользователя произошла ошибка.");
         }
@@ -172,6 +172,7 @@ function App() {
             { }
             <Route path="/signin" element={ loggedIn ? <Navigate to="/movies" /> :
               <Login
+                loggedIn={ loggedIn }
                 onAuthUser={ handleAuthUser }
                 messageError={ messageError }
               /> } />

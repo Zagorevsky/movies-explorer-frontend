@@ -47,6 +47,13 @@ function Login(props) {
     }
   }, [email, password, emailError, passwordError]);
 
+  useEffect(() => {
+    if (props.loggedIn) {
+      setEmail("");
+      setPassword("");
+    }
+  }, [props.loggedIn]);
+
   return (
     <section className="login">
       <div className="login__container">

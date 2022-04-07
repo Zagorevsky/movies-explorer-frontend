@@ -11,7 +11,7 @@ function MoviesCardList(props) {
   const [counter, setCounter] = useState(props.counter);
 
   function downloadingMovies() {
-    setCounter(counter + 7);
+    setCounter(counter + MIN);
   }
   return (
     <>
@@ -39,7 +39,7 @@ function MoviesCardList(props) {
       { props.movies.length >= MIN &&
       props.movies.length > counter &&
       props.movies.length <= MAX &&
-      !props.message  ? (
+      !props.moviesMessage  ? (
         <section className="movies-card-list__container">
           <div type="button"
             onClick={ downloadingMovies }
