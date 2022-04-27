@@ -1,0 +1,67 @@
+.saved-movies {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
+.saved-movies__list {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 40px;
+  margin: 70px 0 0 0;
+  padding: 0;
+  min-height: 100%;
+}
+
+.saved-movies__button {
+  width: 320px;
+  height: 36px;
+  background-size: 320px 36px;
+  color: rgba(0, 0, 0, 1);
+  border: 0;
+  margin: 60px 0 80px 0;
+  padding: 0;
+  border-radius: 6px;
+  font-size: 12px;
+  line-height: 15px;
+  font-weight: 500;
+  font-family: 'Inter', Arial, sans-serif;
+  background: rgba(244, 244, 244, 1);
+}
+
+.saved-movies__button:hover {
+  opacity: 0.5;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 1150px){
+  .saved-movies__list {
+    margin: 60px 0 0 0;
+  }
+}
+
+@media screen and (max-width: 1150px){
+  .saved-movies__button {
+    margin: 80px 0 80px 0;
+  }
+}
+
+@media screen and (max-width: 720px){
+  .saved-movies__list {
+    margin: 50px 0 0 0;
+    gap: 20px;
+  }
+}
+
+@media screen and (max-width: 720px){
+  .saved-movies__button {
+    margin: 70px 0 80px 0;
+    width: 240px;
+    background-size: 240px 36px;
+  }
+}
