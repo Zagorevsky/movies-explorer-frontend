@@ -1,4 +1,4 @@
-# movies-explorer-frontend
+# Movies-explorer-frontend
 ## Дипломная работа
 *[ в рамках обучения Яндекс-Практикум по курсу Веб-разработчик]*
 
