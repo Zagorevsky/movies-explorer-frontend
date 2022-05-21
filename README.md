@@ -1,9 +1,7 @@
 # Movies-explorer-frontend
 ## Дипломная работа
-*[ в рамках обучения Яндекс-Практикум по курсу Веб-разработчик]*
+в рамках обучения Яндекс-Практикум по курсу Веб-разработчик
 
-
-# movies-explorer-frontend
 
 #### Домен приложения: https://kino-exp.students.nomoredomains.xyz
 #### Публичный IP: http://51.250.3.21 (логин: pboul-ooo)
